@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import './IncomeForm.css'
 
-class App extends Component {
+class IncomeForm extends Component {
   constructor() {
     super();
     this.state = {
-      income: 0,
+      amount: 0,
     }
   }
 
   handleInputChange = (event) => {
-    this.setState({income: event.target.vale})
+    this.setState({[event.target.name]: event.target.value})
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     const income = {
-      id: Date.now(),
-      ...this.state
+      amount: parseInt(this.state.income)
     }
     this.props.addIncome(income)
     this.resetState()
@@ -34,14 +33,15 @@ class App extends Component {
       <form>
         <label>Monthly Income</label>
         <input
-          type='text'
+          type='number'
           name='income'
-          placeholder='Monthly Income...'
           value={this.state.income}
-          onChange={event => this.handleInputChange}
+          onChange={event => this.handleInputChange(event)}
         />
-        <button onClick={event > this.handleSubmit}>Submit</button>
+        <button onClick={event => this.handleSubmit(event)}>Submit</button>
       </form>
     )
   }
 }
+
+export default IncomeForm

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 
 import './App.css';
 
-import Header from '../Header/Header'
-import IncomeForm from '../IncomeForm/IncomeForm'
-import ExpenseForm from '../ExpenseForm/ExpenseForm'
-import BudgetDisplay from '../BudgetDisplay/BudgetDisplay'
+import Header from './Components/Header/Header'
+import IncomeForm from './Components/IncomeForm/IncomeForm'
+// import ExpenseForm from './Components/ExpenseForm/ExpenseForm'
+// import BudgetDisplay from './Components/BudgetDisplay/BudgetDisplay'
 
 class App extends Component {
   constructor() {
@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   addIncome = (income) => {
-    this.setState({ income: income })
+    this.setState({ income: income.amount })
   }
 
   addNewExpense = (expense) => {
@@ -39,14 +39,14 @@ class App extends Component {
 
   getTotalSavings = () => {
     const totalSavings = (this.state.income) - (this.state.totalExpenses)
-    
+
     this.setState({ totalSavings: totalSavings })
   }
 
   render() {
     return (
       <div className='App'>
-        <IncomeForm />
+        <IncomeForm addIncome={this.addIncome}/>
       </div>
     )
   }
