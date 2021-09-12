@@ -49,6 +49,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+      <Header />
         <IncomeForm addIncome={this.addIncome}/>
         <ExpenseForm addNewExpense={this.addNewExpense}/>
       </div>
