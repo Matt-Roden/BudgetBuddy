@@ -24,6 +24,7 @@ class App extends Component {
 
   addNewExpense = (expense) => {
     this.setState({ expenses: [...this.state.expenses, expense] })
+    setTimeout(() => {this.getTotalExpenses()}, 300)
   }
 
   getTotalExpenses = () => {
@@ -33,8 +34,10 @@ class App extends Component {
     }, 0)
 
     this.setState({
-      totalExpenses: total
+      totalExpenses: parseInt(total)
     })
+
+    this.getTotalSavings()
   }
 
   getTotalSavings = () => {
