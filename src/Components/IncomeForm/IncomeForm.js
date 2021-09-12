@@ -30,15 +30,16 @@ class IncomeForm extends Component {
 
   render() {
     return (
-      <form>
-        <label>Monthly Income</label>
+      <form className='income-form'>
+        <label for='amount'>Monthly Income</label>
         <input
+          className='income-input'
           type='number'
           name='amount'
           value={this.state.amount}
           onChange={event => this.handleInputChange(event)}
         />
-        <button onClick={event => this.handleSubmit(event)}>Submit</button>
+        <button onClick={event => this.handleSubmit(event)} className='income-button'>Submit</button>
       </form>
     )
   }

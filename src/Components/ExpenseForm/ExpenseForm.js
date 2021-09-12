@@ -34,6 +34,7 @@ class ExpenseForm extends Component {
     return (
       <form>
         <input
+          className='type-input'
           type='text'
           name='type'
           placeholder='Type of Expense'
@@ -41,12 +42,13 @@ class ExpenseForm extends Component {
           onChange={event => this.handleInputChange(event)}
         />
         <input
+          className='amount-input'
           type='number'
           name='amount'
           value={this.state.amount}
           onChange={event => this.handleInputChange(event)}
         />
-        <button onClick={event => this.handleAdd(event)}>Add Expense</button>
+        <button onClick={event => this.handleAdd(event)} className='expense-button'>Add Expense</button>
       </form>
     )
   }
