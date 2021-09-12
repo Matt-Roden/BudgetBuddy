@@ -10,13 +10,13 @@ class IncomeForm extends Component {
   }
 
   handleInputChange = (event) => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({amount: event.target.value})
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
     const income = {
-      amount: parseInt(this.state.income)
+      amount: parseInt(this.state.amount)
     }
     this.props.addIncome(income)
     this.resetState()
@@ -24,7 +24,7 @@ class IncomeForm extends Component {
 
   resetState = () => {
     this.setState({
-      income: 0
+      amount: 0
     })
   }
 
@@ -34,8 +34,8 @@ class IncomeForm extends Component {
         <label>Monthly Income</label>
         <input
           type='number'
-          name='income'
-          value={this.state.income}
+          name='amount'
+          value={this.state.amount}
           onChange={event => this.handleInputChange(event)}
         />
         <button onClick={event => this.handleSubmit(event)}>Submit</button>
