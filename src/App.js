@@ -4,7 +4,7 @@ import './App.css';
 
 import Header from './Components/Header/Header'
 import IncomeForm from './Components/IncomeForm/IncomeForm'
-// import ExpenseForm from './Components/ExpenseForm/ExpenseForm'
+import ExpenseForm from './Components/ExpenseForm/ExpenseForm'
 // import BudgetDisplay from './Components/BudgetDisplay/BudgetDisplay'
 
 class App extends Component {
@@ -47,6 +47,7 @@ class App extends Component {
     return (
       <div className='App'>
         <IncomeForm addIncome={this.addIncome}/>
+        <ExpenseForm addNewExpense={this.addNewExpense}/>
       </div>
     )
   }
