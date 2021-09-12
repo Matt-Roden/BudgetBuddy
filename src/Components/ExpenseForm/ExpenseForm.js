@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import './ExpenseForm.css'
+
 class ExpenseForm extends Component {
   constructor() {
     super();
@@ -32,7 +35,7 @@ class ExpenseForm extends Component {
   render() {
 
     return (
-      <form>
+      <form className='expense-form'>
         <input
           className='type-input'
           type='text'
