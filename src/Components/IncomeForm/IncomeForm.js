@@ -3,37 +3,26 @@ import React, { useState } from 'react'
 import './IncomeForm.css'
 
 const IncomeForm = ({ addIncome }) => {
-  const [amount, setAmount] = useState(0)
-
-  const handleInputChange = (event) => {
-    setAmount(event.target.value)
-  }
+  const [income, setIncome] = useState(0)
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const income = {
-      amount: parseInt(amount)
-    }
-
-    addincome(income)
-    resetState()
-  }
-
-  const resetState = () => {
-    setAmount(0)
+    addIncome(income)
+    setIncome(0)
   }
 
   return (
     <form className='income-form'>
       <label htmlFor='amount'>Monthly Income</label>
       <input
+        required
         className='income-input'
         type='number'
         name='amount'
-        value={this.state.amount}
-        onChange={event => this.handleInputChange(event)}
+        value={income}
+        onChange={event => setIncome(event.target.value)}
       />
-      <button onClick={event => this.handleSubmit(event)} className='income-button'>Submit</button>
+      <button onClick={event => handleSubmit(event)} className='income-button'>Submit</button>
     </form>
   )
 }
