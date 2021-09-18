@@ -1,60 +1,44 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 import './ExpenseForm.css'
 
-class ExpenseForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      amount: 0,
-      type: ''
-    }
-  }
+const ExpenseForm = ({ addNewExpense }) => {
+  const [type, setType] = useState('')
+  const [amount, setAmount] = useState(0)
 
-  handleInputChange = (event) => {
-    this.setState({[event.target.name]: event.target.value})
-  }
-
-  handleAdd = (event) => {
+  const handleAddExpense = (event) => {
     event.preventDefault()
-    const newExpense = {
-      amount: parseInt(this.state.amount),
-      type: this.state.type
+    const expense = {
+      type: type,
+      amount: amount
     }
-    this.props.addNewExpense(newExpense)
-    this.resetState()
+    addNewExpense(expense)
+    setType('')
+    setAmount(0)
   }
 
-  resetState = () => {
-    this.setState({
-      amount: 0,
-      type: ''
-    })
-  }
-
-  render() {
-
-    return (
-      <form className='expense-form'>
-        <input
-          className='type-input'
-          type='text'
-          name='type'
-          placeholder='Type of Expense'
-          value={this.state.type}
-          onChange={event => this.handleInputChange(event)}
-        />
-        <input
-          className='amount-input'
-          type='number'
-          name='amount'
-          value={this.state.amount}
-          onChange={event => this.handleInputChange(event)}
-        />
-        <button onClick={event => this.handleAdd(event)} className='expense-button'>Add Expense</button>
-      </form>
-    )
-  }
-} // end component
+  return (
+    <form className='expense-form'>
+      <input
+        required
+        className='type-input'
+        type='text'
+        name='type'
+        placeholder='Type of Expense'
+        value={type}
+        onChange={event => setType(event.target.value)}
+      />
+      <input
+        required
+        className='amount-input'
+        type='number'
+        name='amount'
+        value={amount}
+        onChange={event => setAmount(parseInt(event.target.value))}
+      />
+      <button onClick={event => handleAddExpense(event)} className='expense-button'>Add Expense</button>
+    </form>
+  )
+}
 
 export default ExpenseForm
