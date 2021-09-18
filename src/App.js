@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './App.css';
 
@@ -15,7 +15,7 @@ const App = () => {
   const [totalSavings, setTotalSavings] = useState(0)
 
   const addIncome = (income) => {
-    setIncome(income)
+    setIncome(income.amount)
   }
 
   const addNewExpense = (expense) => {
@@ -25,18 +25,23 @@ const App = () => {
 
   const getTotalExpenses = () => {
     const total = expenses.reduce((acc, expense) => {
-      acc += expense
+      acc += expense.amount
       return acc
     }, 0)
 
-    setExpenses(parseInt(total))
+    setTotalExpenses(parseInt(total))
     getTotalSavings()
   }
 
   const getTotalSavings = () => {
-    const totalSavings = (income) - (totalExpenses)
-    setTotalSavings(parseInt(totalSavings))
+    const calculatedTotalSavings = (income) - (totalExpenses)
+    setTotalSavings(calculatedTotalSavings)
   }
+
+// Ask about useCallBack and not having a second arg in useEffect
+  useEffect(() => {
+    getTotalExpenses()
+  })
 
   return (
     <div className='App'>
