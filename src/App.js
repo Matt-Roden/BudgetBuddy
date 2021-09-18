@@ -15,7 +15,7 @@ const App = () => {
   const [totalSavings, setTotalSavings] = useState(0)
 
   const addIncome = (income) => {
-    setIncome(income.amount)
+    setIncome(income)
   }
 
   const addNewExpense = (expense) => {
