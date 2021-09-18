@@ -20,7 +20,6 @@ const App = () => {
 
   const addNewExpense = (expense) => {
     setExpenses([...expenses, expense])
-    getTotalExpenses()
   }
 
   const getTotalExpenses = () => {
