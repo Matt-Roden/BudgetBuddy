@@ -31,7 +31,7 @@ class IncomeForm extends Component {
   render() {
     return (
       <form className='income-form'>
-        <label for='amount'>Monthly Income</label>
+        <label htmlFor='amount'>Monthly Income</label>
         <input
           className='income-input'
           type='number'
