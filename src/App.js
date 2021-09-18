@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './App.css';
 
@@ -7,55 +7,49 @@ import IncomeForm from './Components/IncomeForm/IncomeForm'
 import ExpenseForm from './Components/ExpenseForm/ExpenseForm'
 import BudgetDisplay from './Components/BudgetDisplay/BudgetDisplay'
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      income: 0,
-      expenses: [],
-      totalExpenses: 0,
-      totalSavings: 0
-    }
+
+const App = () => {
+  const [income, setIncome] = useState(0)
+  const [expenses, setExpenses] = useState([])
+  const [totalExpenses, setTotalExpenses] = useState(0)
+  const [totalSavings, setTotalSavings] = useState(0)
+
+  const addIncome = (income) => {
+    setIncome(income)
   }
 
-  addIncome = (income) => {
-    this.setState({ income: income.amount })
+  const addNewExpense = (expense) => {
+    setExpenses([...expenses, expense])
   }
 
-  addNewExpense = (expense) => {
-    this.setState({ expenses: [...this.state.expenses, expense] })
-    setTimeout(() => {this.getTotalExpenses()}, 300)
-  }
-
-  getTotalExpenses = () => {
-    const total = this.state.expenses.reduce((acc, expense) => {
+  const getTotalExpenses = () => {
+    const total = expenses.reduce((acc, expense) => {
       acc += expense.amount
       return acc
     }, 0)
 
-    this.setState({
-      totalExpenses: parseInt(total)
-    })
-
-    this.getTotalSavings()
+    setTotalExpenses(parseInt(total))
+    getTotalSavings()
   }
 
-  getTotalSavings = () => {
-    const totalSavings = (this.state.income) - (this.state.totalExpenses)
-
-    this.setState({ totalSavings: totalSavings })
+  const getTotalSavings = () => {
+    const calculatedTotalSavings = (income) - (totalExpenses)
+    setTotalSavings(calculatedTotalSavings)
   }
 
-  render() {
-    return (
-      <div className='App'>
-        <Header />
-        <IncomeForm addIncome={this.addIncome} />
-        <ExpenseForm addNewExpense={this.addNewExpense} />
-        <BudgetDisplay />
-      </div>
-    )
-  }
+// Ask about useCallBack and not having a second arg in useEffect
+  useEffect(() => {
+    getTotalExpenses()
+  })
+
+  return (
+    <div className='App'>
+      <Header />
+      <IncomeForm addIncome={addIncome}/>
+      <ExpenseForm addNewExpense={addNewExpense}/>
+      <BudgetDisplay expenses={expenses} totalSavings={totalSavings}/>
+    </div>
+  )
 }
 
 export default App;
