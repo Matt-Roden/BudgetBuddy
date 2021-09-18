@@ -48,7 +48,7 @@ const App = () => {
       <Header />
       <IncomeForm addIncome={addIncome}/>
       <ExpenseForm addNewExpense={addNewExpense}/>
-      <BudgetDisplay />
+      <BudgetDisplay expenses={expenses} totalSavings={totalSavings}/>
     </div>
   )
 }

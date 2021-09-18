@@ -5,3 +5,21 @@
   margin-left: 5%;
   margin-right: 5%;
 }
+
+.expense-container {
+  height: 50px;
+  border: solid #673AB7 3px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 10px;
+}
+
+
+
+.total-savings {
+  text-align: center;
+  border: solid #673AB7 3px;
+  margin: 10px;
+}
